@@ -26,7 +26,7 @@ export default class FSProjectManager {
         return this.readProject(path.resolve(projectsDir, projectDir))
       }
 
-    }))).filter(project => project)
+    }))).filter(project => project).sort((a, b) => a.sortIndex - b.sortIndex)
 
     return projects
   }
@@ -59,7 +59,8 @@ export default class FSProjectManager {
         url: parsedIndexData.url,
         description: description,
         previewImages: previewImages,
-        bits
+        bits,
+        sortIndex: parsedIndexData.sortIndex
       }
 
     } catch(err) {

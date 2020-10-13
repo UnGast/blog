@@ -17,4 +17,6 @@ export default interface Project {
   bits: ProjectBit[]
 
   previewImages: Image[]
+
+  sortIndex: number
 }

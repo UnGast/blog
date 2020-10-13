@@ -71,9 +71,13 @@ a {
 }
 
 .text-column-page, .center-column-page {
-  max-width: $max-text-column-width;
+  max-width: $max-column-page-width;
   width: 100%;
   margin: 0 auto;
+
+  &.wide {
+    max-width: $max-wide-column-page-width;
+  }
 }
 
 .descriptive-text {

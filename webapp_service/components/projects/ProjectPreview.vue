@@ -1,19 +1,21 @@
 <template>
-  <nuxt-link class="project-preview" :to="localePath({ name: 'project-slug', params: { slug: project.slug } })">
-    <img class="preview-image" :src="project.previewImages[0].url"/>
-
+  <section class="project-preview">
     <div class="info">
-      <span class="title">{{ project.title }}</span>
+      <nuxt-link :to="{}" class="title">{{ project.title }}</nuxt-link>
 
-      <markdown-text :markdown="project.description"/>
+      <markdown-text class="description" :markdown="project.description"/>
     </div>
 
-    <section class="recent-bits">
-      <project-bit-preview v-for="bit in project.bits" :bit="bit" :key="bit.timestamp"/>
+    <section class="latest-bit-area">
+      <label class="label">latest post</label>
+
+      <project-bit-preview :bit="project.bits[0]"/>
     </section>
 
-    <button class="explore-action">explore</button>
-  </nuxt-link>
+    <span class="bit-count">{{ project.bits.length - 1 }} more posts</span>
+
+    <nuxt-link :to="{}" class="goto-project-page-action">go to project page</nuxt-link>
+  </section>
 </template>
 
 <script>
@@ -37,23 +39,26 @@ export default {
 .project-preview {
   display: flex;
   flex-direction: column;
-  max-width: 350px;
   //background: linear-gradient(to bottom right, $accent-color 0%, lighten($primary-color, 10%) 50%);
   //border: 5px solid $primary-color;
-  overflow: hidden;
   background: white;
+  text-decoration: none;
 }
 
 .info {
-  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
 }
 
 .title {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 16px;
   text-transform: uppercase;
-  color: $primary-color;
+}
+
+.description {
 }
 
 .preview-image {
@@ -61,22 +66,47 @@ export default {
   height: auto;
 }
 
-.explore-action {
-  background: lighten($primary-color, 0%);
-  border: 0;
-  border-top: 5px solid $primary-color;
-  border-radius: 0;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  text-transform: uppercase;
+.latest-bit-area {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+
+  .label {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    opacity: .5;
+    margin-bottom: 16px;
+  }
+
+  .project-bit-preview {
+    border: 1px solid rgba(0,0,0,.1);
+  }
 }
 
-.project-preview:hover {
-  
-  .explore-action {
+.bit-count {
+  opacity: .5;
+  margin-bottom: 32px;
+}
 
-    background: $primary-color;
+.goto-project-page-action {
+  //@at-rootbackground: lighten($primary-color, 0%);
+  border: 1px solid $primary-color;
+  border-radius: 0;
+  padding: 16px;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  transition: all .2s;
+
+  &:hover {
+    color: $primary-color;
+  }
+
+  &:active {
+    color: darken($primary-color, 5%);
   }
 }
 </style>

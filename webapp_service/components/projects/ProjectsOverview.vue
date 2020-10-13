@@ -28,11 +28,10 @@ export default {
 
 .projects-overview {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
 
   .project-preview {
-    margin-right: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 64px;
   }
 }
 </style>

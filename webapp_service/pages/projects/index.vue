@@ -1,5 +1,5 @@
 <template>
-  <section class="projects-page">
+  <section class="projects-page center-column-page wide">
     <div class="page-top">
       <h1 class="page-title">Projects</h1>
     </div>
@@ -20,5 +20,9 @@ export default {
 @import 'style';
 
 .projects-page {
+
+  .projects-overview {
+    padding-left: 20px;
+  }
 }
 </style>

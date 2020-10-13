@@ -1,0 +1,81 @@
+{
+  "indexPageFeedHeading": "Articles",
+  "moreArticles": "more articles",
+  "privacyPolicy": "privacy policy",
+  "contact": "contact",
+  "newsletterFormHeading": "get new articles delivered to your inbox",
+  "firstName": "first name",
+  "lastName": "last name",
+  "email": "email",
+  "privacyPolicyAcceptance": {
+    "pre": "I accept the terms of the ",
+    "link": "privacy policy",
+    "end": "."
+  },
+  "enterFirstName": "Please enter your first name.",
+  "enterLastName": "Please enter your last name.",
+  "enterEmail": "Please enter your email address.",
+  "enterValidEmail": "Please enter a valid email address.",
+  "approvalRequired": "Your approval is required.",
+  "checkInput": "Please check the information you provided.",
+  "subscribe": "subscribe",
+  "dontShowAgain": "don't show this again",
+  "errorOccured": "An error occurred. Please try again later or contact me.",
+  "newsletterOptInEmailSent": "Thanks for subscribing! I sent you an email with an activation link to complete the subscription process.",
+  "male": "Mr.",
+  "female": "Mrs.",
+  "cookieMessage": {
+    "pre": "Do you want to allow me to track which actions you take on my site for improvement purposes? You can get detailed information in the ",
+    "link": "privacy policy",
+    "end": "."
+  },  
+  "allow": "allow",
+  "dontAllow": "don't allow",
+  "contactPage": {
+    "privacyPolicyNotice": {
+      "pre": "When contacting me, the terms of the ",
+      "link": "privacy policy",
+      "end": " apply."
+    }
+  },
+  "trackingEnabled": "tracking enabled",
+  "trackingDisabled": "tracking disabled",
+  "enableTracking": "enable tracking",
+  "disableTracking": "disable tracking",
+  "enable": "enable",
+  "disable": "disable",
+  "landingPage": {
+    "title": "Learn about software development",
+    "description": "You will find a range of topics from web development with VueJS to programming 3D applications with Swift."
+  },
+  "millingParametersCalculatorComponent": {
+    "metric": "meter",
+    "imperial": "zoll",
+    "units": "Einheiten",
+    "tool": "Werkzeug",
+    "operation": "Vorgang",
+    "diameter": "Durchmesser",
+    "numberOfTeeth": "Zähnezahl",
+    "feedPerTooth": "Zahnvorschub",
+    "feedPerRotation": "Vorschub pro Umdrehung",
+    "cuttingSpeed": "Schnittgeschwindigkeit",
+    "spindleSpeed": "Spindeldrehzahl",
+    "feedRate": "Vorschubgeschwindigkeit",
+    "calculationHappensAutomatically": "Die Berechnung erfolgt automatisch bei der Eingabe."
+  },
+  "millingParametersCalculatorPage": {
+    "title": "Schnittdaten berechnen",
+    "description": "Geben Sie die Parameter Ihres Werkzeuges sowie einige der operationsspezifischen Parameter an und lassen Sie sich die fehlenden Werte ausgeben.",
+    "embedTitle": "Wollen Sie den Rechner in Ihre Website einbinden?",
+    "embedDescription": "Fügen Sie dazu einfach den nachfolgenden Code in den Quellcode Ihrer Website ein. Dieser wird den Rechner in einem sogenannten iframe laden."
+  },
+  "providedBy": "Bereitgestellt von",
+  "tools": "tools",
+  "articles": "articles",
+  "decimalSeparator": ",",
+  "portfolio": "Portfolio",
+  "toolsPage": {
+    "title": "Tools",
+    "intro": "Here are some tools I programmed to reduce repetitive work in some of my projects or as a technical demonstration."
+  }
+}

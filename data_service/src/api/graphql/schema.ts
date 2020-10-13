@@ -1,0 +1,40 @@
+import { gql } from 'apollo-server-express'
+
+import database from '@/database/Database'
+
+export let typeDefs = gql`
+
+  type Image {
+    url: String!
+  }
+
+  type ProjectBit {
+    timestamp: String!
+    text: String!
+  }
+
+  type Project {
+    title: String!
+    slug: String!
+    url: String!
+    description: String!
+    previewImages: [Image]!
+    bits: [ProjectBit]!
+  }
+
+  type Query {
+    projects: [Project]
+    project(slug: String!): Project
+  }
+`
+
+export let resolvers = {
+  Query: {
+    async projects() {
+      return await database.getProjects()
+    },
+    async project(parent, args) {
+      return (await database.getProjects()).find((project) => project.slug === args.slug)
+    }
+  }
+}

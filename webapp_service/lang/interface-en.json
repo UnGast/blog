@@ -1,0 +1,119 @@
+{
+  "decimalSeparator": ".",
+  "providedBy": "provided by",
+  "allow": "allow",
+  "dontAllow": "don't allow",
+  "enable": "enable",
+  "disable": "disable",
+  "navigation": {
+    "privacyPolicy": "privacy policy",
+    "contact": "contact",
+    "tools": "tools",
+    "articles": "articles",
+    "portfolio": "portfolio",
+    "about": "about",
+    "millingParametersCalculator": "milling parameters calculator"
+  },
+  "articlePage": {
+    "moreArticles": "more articles"
+  },
+  "newsletterForm": {
+    "heading": "get new articles delivered to your inbox",
+    "firstName": "first name",
+    "lastName": "last name",
+    "email": "email",
+    "privacyPolicyAcceptance": {
+      "pre": "I accept the terms of the ",
+      "link": "privacy policy",
+      "end": "."
+    },
+    "enterFirstName": "Please enter your first name.",
+    "enterLastName": "Please enter your last name.",
+    "enterEmail": "Please enter your email address.",
+    "enterValidEmail": "Please enter a valid email address.",
+    "approvalRequired": "Your approval is required.",
+    "checkInput": "Please check the information you provided.",
+    "subscribe": "subscribe",
+    "dontShowAgain": "don't show this again",
+    "errorOccured": "An error occurred. Please try again later or contact me.",
+    "newsletterOptInEmailSent": "Thanks for subscribing! I sent you an email with an activation link to complete the subscription process.",
+    "male": "Mr.",
+    "female": "Mrs."
+  },
+  "trackingBannerComponent": {
+    "cookieMessage": {
+      "pre": "Do you want to allow me to track which actions you take on my site for improvement purposes? You can get detailed information in the ",
+      "link": "privacy policy",
+      "end": "."
+    }
+  },
+  "footerComponent": {
+    "trackingEnabled": "tracking enabled",
+    "trackingDisabled": "tracking disabled",
+    "enableTracking": "enable tracking",
+    "disableTracking": "disable tracking"
+  },
+  "landingPage": {
+    "title": "Articles",
+    "intro": "Here you'll find explanations and solutions for problems I have faced while pursuing my projects.",
+    "meta": {
+      "title": "Practical Software Development Blog",
+      "description": "You will find a range of topics from web development with VueJS to programming 3D applications with Swift."
+    }
+  },
+  "millingParametersCalculatorComponent": {
+    "metric": "metric",
+    "imperial": "imperial",
+    "units": "units",
+    "tool": "tool",
+    "operation": "operation",
+    "diameter": "diameter",
+    "numberOfTeeth": "number of teeth",
+    "feedPerTooth": "feed per tooth",
+    "feedPerRotation": "feed per rotation",
+    "cuttingSpeed": "cutting speed",
+    "spindleSpeed": "spindle speed",
+    "feedRate": "feed rate",
+    "calculationHappensAutomatically": "Calculation happens automatically as you type."
+  },
+  "millingParametersCalculatorPage": {
+    "title": "calculate speeds and feeds",
+    "description": "Enter your tool parameters, a few of the operation specific values and let the calculator figure out the missing ones.",
+    "embedTitle": "Want to embed this in your website?",
+    "embedDescription": "Simply insert the code below into your website's source code. It will load the calculator inside a so called iframe alongside your other content."
+  },
+  "portfolioPage": {
+    "title": "Portfolio",
+    "intro": "Here are some projects which I either did as a demonstration of technical possibilities or to reduce repetitive work or both.",
+    "meta": {
+      "title": "Portfolio of programming projects",
+      "description": "I use web apps to make tools that a user can instantly use without an installation process. Clean design and fast responses to the users actions."
+    },
+    "itemMillingParametersCalculator": {
+      "name": "Milling Parameters Calculator",
+      "description": "Calculate the cutting speed, spindle speed and feed rate for CNC milling operations."
+    }
+  },
+  "contactPage": {
+    "title": "Contact",
+    "intro": "Have a question or a remark? Feel free to contact me.",
+    "privacyPolicyNotice": {
+      "pre": "When contacting me, the terms of the ",
+      "link": "privacy policy",
+      "end": " apply."
+    }
+  },
+  "privacyPolicyPage": {
+    "title": "privacy policy"
+  },
+  "aboutPage": {
+    "title": "about"
+  },
+  "legalContact": {
+    "privacyPolicyNotice": {
+      "pre": "When contacting me, the terms of the ",
+      "link": "privacy policy",
+      "end": " apply."
+    }
+  }
+}

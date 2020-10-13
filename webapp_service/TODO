@@ -1,0 +1,6 @@
+//- finish privacy policy
+- newsletter sign off /cancel subscription mask in website
+//- include cleverreach gdpr data into own privacy policy
+- update cleverreach look
+
+- CHECK REPORT NOTE: if you define it as a local dependency with `.package(name: String, path: String)` the name you provide must match the name of the folder of the package as well as the name defined in its package.swift).

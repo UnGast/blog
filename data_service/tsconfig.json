@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "typeRoots": ["./node_modules/@types"],
+        "baseUrl": "./src",
+        "paths": {
+            "@/*": ["./*"]
+        }
+    }
+}

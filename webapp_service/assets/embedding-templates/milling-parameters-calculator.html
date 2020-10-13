@@ -1,0 +1,23 @@
+<iframe
+  src="{{url}}"
+  id="engineeringbydoing-milling-parameters-calculator-iframe"
+  frameborder="0"
+  style="width: 100vw; height: 100vh; position: fixed; opacity: 0; pointer-events: none;"></iframe>
+<script>
+  (function() {
+    var iframe = document.getElementById('engineeringbydoing-milling-parameters-calculator-iframe');
+    window.addEventListener('message', function(event) {
+      if (typeof event.data === 'object') {
+        if (event.data.id === '{{url}}') {
+          iframe.style.maxWidth = '100%';
+          iframe.style.maxHeight = '100%';
+          iframe.style.width = event.data.width + 'px';
+          iframe.style.height = event.data.height + 'px';
+          iframe.style.position = 'relative';
+          iframe.style.opacity = 1;
+          iframe.style.pointerEvents = 'all';
+        }
+      }
+    });
+  })();
+</script>

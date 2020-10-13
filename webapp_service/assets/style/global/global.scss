@@ -1,0 +1,441 @@
+@import '../style.scss';
+
+@import './fonts.css';
+
+:root {
+  font-size: 20px;
+}
+
+* {
+  font-family: "Roboto Condensed", sans-serif;
+  letter-spacing: 0.04em;
+}
+
+a {
+  color: $primary-color;
+  word-break: break-word;
+
+  &:hover {
+    color: darken($primary-color, 10%);
+  }
+
+  &:active {
+    color: darken($primary-color, 20%);
+  }
+
+  .negative &, &.negative {
+    color: white;
+
+    &:hover {
+      color: darken(white, 10%);
+    }
+    
+    &:active {
+      color: darken(white, 20%);
+    }
+  }
+}
+
+.select {
+  background: transparent;
+  font-size: .8rem;
+  border: 0;
+  color: white;
+  padding: 8px 0 8px 0;
+  border-bottom: 2px solid white;
+  cursor: pointer;
+  outline: 0;
+
+  option {
+    color: black;
+  }
+}
+
+.increased-pointer-target {
+  position: relative;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.label {
+  font-size: $label-font-size;
+}
+
+.text-column-page, .center-column-page {
+  max-width: $max-text-column-width;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.descriptive-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.page-top {
+  width: 100%;
+  padding: 64px 16px 24px 16px;
+  //background: $primary-color;
+  margin-bottom: 48px;
+  border: 5px solid change-color($primary-color, $alpha: .3);
+
+  @media screen and (max-width: $breakpoint-small) {
+    padding-left: 0;
+    padding-right: 0;
+    border-right: 0;
+    border-left: 0;
+  }
+
+  .page-title {
+    color: black;
+    //margin-bottom: 48px;
+    //border-bottom: 24px solid currentColor;
+    //padding-bottom: 8px;
+    font-size: 2rem;
+    //ont-weight: normal;
+    //opacity: .8;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+
+    @media screen and (max-width: $breakpoint-small) {
+      font-size: 1.5rem;
+    }
+  }
+
+  .page-intro {
+    margin-top: 16px;
+    @extend .descriptive-text;
+  }
+
+  &.with-substantial-content {
+    padding-top: 48px;
+  }
+}
+
+.page-section-title {
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+
+    @media screen and (max-width: $breakpoint-small) {
+      font-size: 1.2rem;
+    }
+}
+
+.running-text {
+  line-height: 1.7;
+  font-size: 1rem;
+  white-space: normal;
+  font-family: "Open Sans";
+  max-width: $max-text-column-width;
+
+  h1 {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+  }
+
+  p {
+    font-size: 1rem;
+    font-family: "Open Sans";
+  }
+
+  a {
+    font-family: "Open Sans";
+  }
+
+  .code-block {
+    margin: 32px 0 48px 0;
+  }
+
+  .code-snippet {
+    max-width: 100%;
+  }
+
+  .image {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: $breakpoint-small) {
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+.icon {
+  svg {
+    fill: currentColor;
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+.tag {
+  background: $primary-color;
+  border-radius: 10000px;
+  padding: 4px 8px;
+  padding-top: 6px; // to account for text being always a bit above middle
+  font-size: .7rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
+}
+
+.button {
+  cursor: pointer;
+
+  &.flat {
+    background: $primary-color;
+    border: 0;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: $button-font-size;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
+    transition: all .2s;
+    cursor: pointer;
+    //border: 2px solid black;
+    outline: none;
+
+    &:hover {
+      background: darken($primary-color, 4%);
+    }
+
+    &:active {
+      background: darken($primary-color, 8%);
+    }
+
+    .negative &, &.negative {
+      background: white;
+      color: $primary-color;
+
+      &:hover {
+        color: darken($primary-color, 10%);
+      }
+
+      &:active {
+        color: darken($primary-color, 20%);
+        background: change-color($primary-color, $lightness: 95%);
+      }
+    }
+  }
+
+  &.social {
+    background: $primary-color;
+    border: 0;
+    padding: 8px 16px;
+    border-radius: 1000px;
+    font-size: $button-font-size;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    transition: all .2s;
+    cursor: pointer;
+    //border: 2px solid black;
+    outline: none;
+
+    &.share-network-facebook {
+      background: #4267B2;
+
+      &:hover {
+        background: darken(#4267B2, 6%);
+      }
+
+      &:active {
+        background: darken(#4267B2, 12%);
+      }
+    }
+
+    &.share-network-twitter {
+      background: #1DA1F2;
+
+      &:hover {
+        background: darken(#1DA1F2, 6%);
+      }
+
+      &:active {
+        background: darken(#1DA1F2, 12%);
+      }
+    }
+  }
+}
+
+.text-input {
+  background: none;
+  border: 0;
+  border-bottom: 2px solid $primary-color;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  
+  padding: 4px 0;
+  outline: 0;
+  font-size: .8rem;
+  
+  &::placeholder {
+    color: $primary-color;
+    opacity: .5;
+    font-size: .8rem;
+  }
+
+  .negative & {
+    border-bottom-color: white;
+    color: white;
+
+    &::placeholder {
+      color: white;
+    }
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  .section-heading {
+    font-size: $label-font-size + 0.1rem;
+    padding-bottom: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 1px solid $primary-color;
+    flex-basis: 100%;
+    margin-bottom: 16px;
+    color: $primary-color;
+    width: 100%;
+  }
+  
+  .note {
+    font-size: $label-font-size;
+  }
+
+  .form-line {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .form-element {
+    display: flex;
+    flex-direction: column;
+    margin-right: 16px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+
+    &.checkbox-element {
+      flex-direction: row;
+    }
+  }
+
+  .checkbox {
+    background: white;
+    border-color: white;
+    margin-right: 12px;
+  }
+
+  .checkbox + .label {
+    transform: translateY(.35em);
+  }
+
+  .label {
+    display: inline-block;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .errors {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .error {
+    font-size: .8rem;
+    color: lighten(red, 50%);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .status {
+    margin-top: 16px;
+  }
+
+  .success {
+    font-size: .8rem;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    //margin-top: 16px;
+  }
+
+  .primary-action-button {
+    /*background: white;
+    border-radius: 5px;
+    border: 0;
+    padding: 12px 16px;
+    //background: radial-gradient(white 0%, rgb(215,215,215) 100%);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: .7rem;
+    color: $primary-color;
+    cursor: pointer;
+    outline: 0;
+    margin-right: 8px;
+    transition: all .15s;
+    box-shadow: 0 0 16px 8px rgba(0,0,0,.1);
+    line-height: 1;
+
+    &:hover {
+      color: darken($primary-color, 10%);
+      //background: darken(white, 2%);
+    }
+
+    &:active {
+      color: darken($primary-color, 30%);
+      //background: darken(white, 5%);
+    }*/
+  }
+
+  &.negative {
+
+  }
+}

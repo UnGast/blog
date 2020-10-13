@@ -3,10 +3,13 @@ import Image from './Image'
 
 export default interface Project {
 
+  id: string
+
   title: string
   
   slug: string
 
+  /** @deprecated since always */
   url: string
 
   description: string

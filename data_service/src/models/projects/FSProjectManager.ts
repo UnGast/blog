@@ -5,6 +5,7 @@ import * as path from 'path'
 import { isValid as isValidDate } from 'date-fns'
 import ProjectBit from "./ProjectBit"
 import { parseDatetime } from "@/helpers/date"
+import * as constants from '@/constants'
 
 export default class FSProjectManager {
 
@@ -36,20 +37,23 @@ export default class FSProjectManager {
       
       let rawIndexData = await fs.promises.readFile(path.resolve(projectDir, 'index.json'), 'utf8')
 
+      let id = path.basename(projectDir)
+
       let parsedIndexData = JSON.parse(rawIndexData)
 
       let description = await fs.promises.readFile(path.resolve(projectDir, 'description.md'), 'utf-8')
 
       let previewImages: Image[] = (parsedIndexData.previewImages || []).map(filename => ({
 
-        url: process.env.PROJECT_ASSET_URL_SCHEME
-          .replace('$project', parsedIndexData.url)
+        url: constants.PROJECT_ASSET_URL_SCHEME
+          .replace('$project', id)
           .replace('$asset', filename)
       }))
 
-      let bits = await this.readBits(path.resolve(projectDir, 'bits'))
+      let bits = await this.readBits(path.resolve(projectDir, 'bits'), id)
 
       return {
+        id: parsedIndexData.id, 
         title: parsedIndexData.title,
         slug: parsedIndexData.slug,
         url: parsedIndexData.url,
@@ -66,7 +70,7 @@ export default class FSProjectManager {
     }
   }
 
-  async readBits(bitsDir: string): Promise<ProjectBit[]> {
+  async readBits(bitsDir: string, projectId: string): Promise<ProjectBit[]> {
     
     let bitDirs = await fs.promises.readdir(bitsDir)
 
@@ -74,13 +78,13 @@ export default class FSProjectManager {
 
       if (fs.existsSync(path.resolve(bitsDir, bitDir, 'index.json'))) {
 
-        return await this.readBit(path.resolve(bitsDir, bitDir))
+        return await this.readBit(path.resolve(bitsDir, bitDir), projectId)
       }
 
     }))).filter(bit => bit)
   }
 
-  async readBit(bitDir: string): Promise<ProjectBit | null> {
+  async readBit(bitDir: string, projectId: string): Promise<ProjectBit | null> {
 
     try {    
       
@@ -88,9 +92,22 @@ export default class FSProjectManager {
 
       let indexData = JSON.parse(rawIndexData)
 
-      let text = await fs.promises.readFile(path.resolve(bitDir, 'text.md'), 'utf-8')
+      let id = path.basename(bitDir)
 
       let timestamp = parseDatetime(indexData.timestamp)
+
+      let previewImages: Image[] = indexData.previewImages.map(filename => {
+        return { 
+          url: constants.PROJECT_BIT_ASSET_URL_SCHEME
+            .replace('$project', projectId)
+            .replace('$bit', id)
+            .replace('$asset', filename)
+        }
+      })
+
+      let summary = await fs.promises.readFile(path.resolve(bitDir, 'summary.md'), 'utf-8')
+
+      let text = await fs.promises.readFile(path.resolve(bitDir, 'text.md'), 'utf-8')
 
       if (!isValidDate(timestamp)) {
         
@@ -98,6 +115,10 @@ export default class FSProjectManager {
       }
 
       return {
+
+        previewImages,
+
+        summary,
 
         text,
 

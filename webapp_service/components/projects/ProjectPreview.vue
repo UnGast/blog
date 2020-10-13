@@ -8,15 +8,20 @@
       <markdown-text :markdown="project.description"/>
     </div>
 
+    <section class="recent-bits">
+      <project-bit-preview v-for="bit in project.bits" :bit="bit" :key="bit.timestamp"/>
+    </section>
+
     <button class="explore-action">explore</button>
   </nuxt-link>
 </template>
 
 <script>
 import MarkdownText from '@/components/MarkdownText'
+import ProjectBitPreview from './ProjectBitPreview'
 
 export default {
-  components: { MarkdownText },
+  components: { MarkdownText, ProjectBitPreview },
   props: {
     project: {
       type: Object,

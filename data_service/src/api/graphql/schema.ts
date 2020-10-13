@@ -10,6 +10,8 @@ export let typeDefs = gql`
 
   type ProjectBit {
     timestamp: String!
+    previewImages: [Image]!
+    summary: String!
     text: String!
   }
 

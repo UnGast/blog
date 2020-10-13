@@ -1,0 +1,2 @@
+export let PROJECT_ASSET_URL_SCHEME=`${process.env.ASSET_BASE_URL}/project/$project/asset/$asset`
+export let PROJECT_BIT_ASSET_URL_SCHEME=`${process.env.ASSET_BASE_URL}/project/$project/bit/$bit/asset/$asset`

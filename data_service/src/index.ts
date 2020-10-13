@@ -13,12 +13,26 @@ if (process.env.NODE_ENV === 'development') {
 
     console.log('Serving content assets in development mode.')
 
-    app.use('/project/:projectSlug/asset/:assetName', (req, res, next) => {
+    app.use('/project/:projectId/asset/:assetName', (req, res, next) => {
 
         let assetFilePath = path.resolve(
             process.env.CONTENT_DIR_PATH,
             'projects',
-            req.params.projectSlug,
+            req.params.projectId,
+            'assets',
+            req.params.assetName)
+
+        res.sendFile(assetFilePath)
+    })
+
+    app.use('/project/:projectId/bit/:bitId/asset/:assetName', (req, res, next) => {
+
+        let assetFilePath = path.resolve(
+            process.env.CONTENT_DIR_PATH,
+            'projects',
+            req.params.projectId,
+            'bits',
+            req.params.bitId,
             'assets',
             req.params.assetName)
 

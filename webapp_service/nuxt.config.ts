@@ -61,7 +61,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/vue-matomo.js', ssr: false }
+    { src: '~/plugins/vue-matomo.js', ssr: false },
+    { src: '~/plugins/vue-date-helpers.ts', ssr: true }
   ],
   babel: {
   },

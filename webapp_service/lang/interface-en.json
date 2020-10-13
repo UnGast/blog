@@ -1,5 +1,6 @@
 {
   "decimalSeparator": ".",
+  "datetimeFormat": "MM/dd/yyyy mm:HH",
   "providedBy": "provided by",
   "allow": "allow",
   "dontAllow": "don't allow",

@@ -12,3 +12,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.icon {
+  font-size: 0;
+}
+
+svg {
+  fill: currentColor;
+  width: 1rem;
+  height: 1rem;
+}
+</style>

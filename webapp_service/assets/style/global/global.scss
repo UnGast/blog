@@ -200,14 +200,6 @@ a {
   }
 }
 
-.icon {
-  svg {
-    fill: currentColor;
-    width: 1rem;
-    height: 1rem;
-  }
-}
-
 .tag {
   background: $primary-color;
   border-radius: 10000px;
@@ -297,6 +289,38 @@ a {
         background: darken(#1DA1F2, 12%);
       }
     }
+  }
+}
+
+.link-action {
+  border: 1px solid $primary-color;
+  padding: 16px;
+  transition: all .2s;
+  background: transparent;
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .2s;
+
+  // if there is an icon, the text should have .text class
+  .text + .icon {
+    margin-left: 8px;
+  }
+
+  .icon + .text {
+    margin-left: 8px;
+  }
+
+  &:hover {
+    color: $primary-color;
+  }
+
+  &:active {
+    color: darken($primary-color, 15%);
   }
 }
 

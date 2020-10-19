@@ -9,4 +9,6 @@ export default interface ProjectBit {
   previewImages: Image[]
 
   text: string
+
+  projectId: string
 }

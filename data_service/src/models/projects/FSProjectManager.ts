@@ -53,7 +53,7 @@ export default class FSProjectManager {
       let bits = await this.readBits(path.resolve(projectDir, 'bits'), id)
 
       return {
-        id: parsedIndexData.id, 
+        id, 
         title: parsedIndexData.title,
         slug: parsedIndexData.slug,
         url: parsedIndexData.url,
@@ -123,7 +123,9 @@ export default class FSProjectManager {
 
         text,
 
-        timestamp
+        timestamp,
+
+        projectId
       }
 
     } catch(err) {

@@ -1,6 +1,7 @@
 import { gql } from 'apollo-server-express'
 
 import database from '@/database/Database'
+import ProjectBit from '@/models/projects/ProjectBit'
 
 export let typeDefs = gql`
 
@@ -13,6 +14,7 @@ export let typeDefs = gql`
     previewImages: [Image]!
     summary: String!
     text: String!
+    project: Project!
   }
 
   type Project {
@@ -28,6 +30,7 @@ export let typeDefs = gql`
   type Query {
     projects: [Project]
     project(slug: String!): Project
+    projectBit(projectSlug: String!, bitTimestamp: String!): ProjectBit
   }
 `
 
@@ -38,11 +41,39 @@ export let resolvers = {
     },
     async project(parent, args) {
       return (await database.getProjects()).find((project) => project.slug === args.slug)
+    },
+    async projectBit(parent, args) {
+      let projects = await database.getProjects()
+      let targetBitTimestamp = Number(args.bitTimestamp)
+      let bitResult: ProjectBit|null = null
+      console.log('PROJECT BIT', args)
+      for (let project of projects) {
+        if (project.slug === args.projectSlug) {
+          console.log("'FOUND PROJECT")
+          for (let bit of project.bits) {
+            console.log('COMPARE', bit.timestamp, targetBitTimestamp)
+            if (bit.timestamp.getTime() === targetBitTimestamp) {
+              console.log('GOT RESULT', bit)
+              bitResult = bit
+              break
+            }
+            if (bitResult) {
+              break
+            }
+          }
+        }
+      }
+      return bitResult
     }
   },
   Project: {
     startTimestamp(parent) {
       return parent.bits[parent.bits.length - 1].timestamp
+    }
+  },
+  ProjectBit: {
+    async project(parent) {
+      return (await database.getProjects()).find((project) => project.id === parent.projectId)
     }
   }
 }

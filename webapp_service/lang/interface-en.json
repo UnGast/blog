@@ -122,5 +122,8 @@
   },
   "projectBitPreview": {
     "showFullAction": "show full post"
+  },
+  "projectBitPage": {
+    "entryOf": "Entry from"
   }
 }

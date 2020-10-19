@@ -18,13 +18,13 @@
 
     <span class="bit-count">{{ project.bits.length - 1 }} more posts</span>
 
-    <nuxt-link :to="localePath({ name: 'project-slug', params: { slug: project.slug } })" class="goto-project-page-action">go to project page</nuxt-link>
+    <nuxt-link :to="localePath({ name: 'project-projectSlug', params: { projectSlug: project.slug } })" class="goto-project-page-action link-action">go to project page</nuxt-link>
   </section>
 </template>
 
 <script>
 import MarkdownText from '@/components/MarkdownText'
-import ProjectBitPreview from './ProjectBitPreview'
+import { default as ProjectBitPreview, requiredProjectBitFields } from './ProjectBitPreview'
 
 export default {
   components: { MarkdownText, ProjectBitPreview },
@@ -40,6 +40,16 @@ export default {
     }
   }
 }
+
+export let requiredProjectFields = [
+  'title', 'slug', 'url', 'description', 'startTimestamp', {
+    name: 'previewImages',
+    fields: ['url']
+  }, {
+    name: 'bits',
+    fields: requiredProjectBitFields
+  }
+]
 </script>
 
 <style lang="scss" scoped>
@@ -109,26 +119,5 @@ export default {
 .bit-count {
   opacity: .5;
   margin-bottom: 32px;
-}
-
-.goto-project-page-action {
-  //@at-rootbackground: lighten($primary-color, 0%);
-  border: 1px solid $primary-color;
-  border-radius: 0;
-  padding: 16px;
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-align: center;
-  transition: all .2s;
-
-  &:hover {
-    color: $primary-color;
-  }
-
-  &:active {
-    color: darken($primary-color, 5%);
-  }
 }
 </style>

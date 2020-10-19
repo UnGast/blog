@@ -4,15 +4,27 @@
       <h1 class="page-title">Projects</h1>
     </div>
 
-    <projects-overview/>
+    <project-preview v-for="project in projects" :key="project.slug" :project="project"/>
   </section>
 </template>
 
 <script>
-import ProjectsOverview from '@/components/projects/ProjectsOverview'
+import gql from 'graphql-tag'
+import { default as ProjectPreview, requiredProjectFields } from '@/components/projects/ProjectPreview'
+import { generateQueryFieldsString } from '@/lib/utils'
 
 export default {
-  components: { ProjectsOverview }
+  components: { ProjectPreview },
+  apollo: {
+    projects: gql`query {
+      projects {
+        ${generateQueryFieldsString(requiredProjectFields)}
+      }
+    }`
+  },
+  data: () => ({
+    projects: []
+  })
 }
 </script>
 
@@ -21,8 +33,8 @@ export default {
 
 .projects-page {
 
-  .projects-overview {
-    padding-left: 20px;
+  .project-preview {
+    margin-bottom: 64px;
   }
 }
 </style>

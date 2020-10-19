@@ -116,5 +116,11 @@
       "link": "privacy policy",
       "end": " apply."
     }
+  },
+  "projectDetailPage": {
+    "bitsHeading": "bits"
+  },
+  "projectBitPreview": {
+    "showFullAction": "show full post"
   }
 }

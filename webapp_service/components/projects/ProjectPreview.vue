@@ -4,6 +4,10 @@
       <nuxt-link :to="{}" class="title">{{ project.title }}</nuxt-link>
 
       <markdown-text class="description" :markdown="project.description"/>
+
+      <!--<div class="meta">
+        <div class="start-date"><label class="label">started:</label><span class="value">{{ startDate }}</span></div>
+      </div>-->
     </div>
 
     <section class="latest-bit-area">
@@ -14,7 +18,7 @@
 
     <span class="bit-count">{{ project.bits.length - 1 }} more posts</span>
 
-    <nuxt-link :to="{}" class="goto-project-page-action">go to project page</nuxt-link>
+    <nuxt-link :to="localePath({ name: 'project-slug', params: { slug: project.slug } })" class="goto-project-page-action">go to project page</nuxt-link>
   </section>
 </template>
 
@@ -28,6 +32,11 @@ export default {
     project: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    startDate() {
+      return this.$formatDate(new Date(Number(this.project.startTimestamp)))
     }
   }
 }
@@ -59,6 +68,19 @@ export default {
 }
 
 .description {
+}
+
+.meta {
+  opacity: .5;
+
+  .label {
+    font-size: 1rem;
+    margin-right: 8px;
+  }
+
+  .value {
+    font-size: 1rem;
+  }
 }
 
 .preview-image {

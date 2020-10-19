@@ -1,37 +1,43 @@
 <template>
-  <section class="project-page">
-    <section class="page-top">
-      <h1 class="page-title">{{ project.title }}</h1>
-    </section>
+  <section class="project-page center-column-page wide">
+    <template v-if="!$apollo.loading && project">
+      <section class="page-top">
+        <h1 class="page-title">{{ project.title }}</h1>
+      </section>
 
-    <project-bits-overview :project="project"/>
+      <project-detail :project="project"/>
+    </template>
   </section>
 </template>
 
 <script>
 import gql from 'graphql-tag'
-import ProjectBitsOverview from '@/components/projects/ProjectBitsOverview'
+import MarkdownText from '@/components/MarkdownText'
+import { default as ProjectDetail, requiredProjectFields } from '@/components/projects/ProjectDetail'
+import { generateQueryFieldsString } from '@/lib/utils'
 
 export default {
-  components: { ProjectBitsOverview },
+  components: { MarkdownText, ProjectDetail },
   apollo: {
     project: {
       query: gql`query project($slug: String!) {
         project(slug: $slug) {
-          title, slug, description, bits { timestamp, text }
+          ${generateQueryFieldsString(requiredProjectFields)}
         }
       }`,
       variables() {
-        console.log('VARIALBES', this.$route.params.slug)
         return {
           slug: this.$route.params.slug
         }
       },
-      update(data) {
-        console.log('RECEIVED DATA', data)
-        return data.project
-      }
+      prefetch: false
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import 'style';
+
+
+</style>

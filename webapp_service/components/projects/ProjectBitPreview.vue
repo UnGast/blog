@@ -29,6 +29,10 @@ export default {
     }
   }
 }
+
+export let requiredProjectBitFields = [
+  'timestamp', 'summary', { name: 'previewImages', fields: ['url'] }
+]
 </script>
 
 <style lang="scss" scoped>

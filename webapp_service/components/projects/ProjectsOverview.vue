@@ -13,7 +13,7 @@ export default {
   apollo: {
     projects: gql`query {
       projects {
-        title, slug, url, description, previewImages { url }, bits { timestamp, text, summary, previewImages { url } }
+        title, slug, url, description, startTimestamp, previewImages { url }, bits { timestamp, text, summary, previewImages { url } }
       }
     }`
   },

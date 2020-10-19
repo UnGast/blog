@@ -21,6 +21,7 @@ export let typeDefs = gql`
     url: String!
     description: String!
     previewImages: [Image]!
+    startTimestamp: String!
     bits: [ProjectBit]!
   }
 
@@ -37,6 +38,11 @@ export let resolvers = {
     },
     async project(parent, args) {
       return (await database.getProjects()).find((project) => project.slug === args.slug)
+    }
+  },
+  Project: {
+    startTimestamp(parent) {
+      return parent.bits[parent.bits.length - 1].timestamp
     }
   }
 }

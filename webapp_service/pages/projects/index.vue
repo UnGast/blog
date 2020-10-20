@@ -15,16 +15,21 @@ import { generateQueryFieldsString } from '@/lib/utils'
 
 export default {
   components: { ProjectPreview },
-  apollo: {
-    projects: gql`query {
-      projects {
-        ${generateQueryFieldsString(requiredProjectFields)}
-      }
-    }`
-  },
-  data: () => ({
-    projects: []
-  })
+  async asyncData(context) {
+    let client = context.app.apolloProvider.defaultClient
+
+    let { data } = await client.query({
+      query:  gql`query {
+        projects {
+          ${generateQueryFieldsString(requiredProjectFields)}
+        }
+      }`
+    })
+
+    return {
+      projects: data.projects
+    }
+  }
 }
 </script>
 

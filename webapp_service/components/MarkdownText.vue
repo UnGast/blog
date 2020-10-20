@@ -32,7 +32,7 @@ export default {
             }
           }))
         } else if (node.type === 'image') {
-          vueNodes.push(h(Image, { props: { image: { url: node.src, alt: node.alt } }}))
+          vueNodes.push(h(Image, { props: { image: { url: node.src, description: node.alt } }}))
         } else if (node.type === 'blank') {
           vueNodes.push(h('br'))
         } else if (node.type === 'italic') {

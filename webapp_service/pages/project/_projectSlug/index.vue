@@ -29,19 +29,24 @@ let requiredProjectFields = [
 
 export default {
   components: { MarkdownText, ProjectBitPreview },
-  apollo: {
-    project: {
+  async asyncData(context) {
+    let client = context.app.apolloProvider.defaultClient
+
+    console.log('ASYNC CONTEXT', context.params, context.route)
+
+    let { data } = await client.query({
       query: gql`query project($slug: String!) {
         project(slug: $slug) {
           ${generateQueryFieldsString(requiredProjectFields)}
         }
       }`,
-      variables() {
-        return {
-          slug: this.$route.params.projectSlug
-        }
-      },
-      prefetch: false
+      variables: {
+        slug: context.params.projectSlug
+      }
+    })
+
+    return {
+      project: data.project
     }
   }
 }

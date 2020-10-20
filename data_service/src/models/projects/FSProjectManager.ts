@@ -67,7 +67,7 @@ export default class FSProjectManager {
 
   async preprocessProjectMarkdown(markdown: string, projectId: string) {
     let preprocessed = markdown
-    preprocessed = preprocessed.replace(/\$asset((\/[a-zA-Z0-9-_.]+)+)/, (match, group1) => {
+    preprocessed = preprocessed.replace(/\$asset((\/[a-zA-Z0-9-_.]+)+)/g, (match, group1) => {
       return this.makeProjectAssetUrl(group1.substring(1), projectId)
     })
     return preprocessed
@@ -129,7 +129,7 @@ export default class FSProjectManager {
 
   async preprocessBitMarkdown(markdown: string, bitId: string, projectId: string) {
     let preprocessed = markdown
-    preprocessed = preprocessed.replace(/\$asset((\/[a-zA-Z0-9-_.]+)+)/, (match, group1) => {
+    preprocessed = preprocessed.replace(/\$asset((\/[a-zA-Z0-9-_.]+)+)/g, (match, group1) => {
       return this.makeBitAssetUrl(group1.substring(1), bitId, projectId)
     })
     return preprocessed

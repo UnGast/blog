@@ -29,8 +29,11 @@ export default class FSProjectManager {
 
       let parsedIndexData = JSON.parse(rawIndexData)
 
-      let description = await fs.promises.readFile(path.resolve(projectDir, 'description.md'), 'utf-8')
-      description = await this.preprocessProjectMarkdown(description, id)
+      let shortDescription = await fs.promises.readFile(path.resolve(projectDir, 'short_description.md'), 'utf-8')
+      shortDescription = await this.preprocessProjectMarkdown(shortDescription, id)
+
+      let fullDescription = await fs.promises.readFile(path.resolve(projectDir, 'full_description.md'), 'utf-8')
+      fullDescription = await this.preprocessProjectMarkdown(fullDescription, id)
 
       let previewImages: Image[] = (parsedIndexData.previewImages || []).map(filename => ({
         url: this.makeProjectAssetUrl(filename, id)
@@ -43,8 +46,9 @@ export default class FSProjectManager {
         title: parsedIndexData.title,
         slug: parsedIndexData.slug,
         url: parsedIndexData.url,
-        description: description,
-        previewImages: previewImages,
+        shortDescription,
+        fullDescription,
+        previewImages,
         bits,
         sortIndex: parsedIndexData.sortIndex
       }

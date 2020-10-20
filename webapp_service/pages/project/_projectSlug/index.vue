@@ -5,7 +5,7 @@
         <h1 class="page-title">{{ project.title }}</h1>
       </div>
 
-      <markdown-text class="description" :markdown="project.description"/>
+      <markdown-text class="description" :markdown="project.fullDescription"/>
 
       <div class="bits">
         <h2 class="bits-heading">{{ $t('projectDetailPage.bitsHeading') }}</h2>
@@ -22,7 +22,7 @@ import MarkdownText from '@/components/MarkdownText'
 import { default as ProjectBitPreview, requiredProjectBitFields } from '@/components/projects/ProjectBitPreview'
 
 let requiredProjectFields = [
-  'title', 'slug', 'description', {
+  'title', 'slug', 'fullDescription', {
     name: 'bits', fields: requiredProjectBitFields
   }
 ]

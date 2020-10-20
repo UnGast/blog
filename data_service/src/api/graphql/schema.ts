@@ -21,7 +21,8 @@ export let typeDefs = gql`
     title: String!
     slug: String!
     url: String!
-    description: String!
+    shortDescription: String!
+    fullDescription: String!
     previewImages: [Image]!
     startTimestamp: String!
     bits: [ProjectBit]!

@@ -1,9 +1,9 @@
 <template>
   <section class="project-preview">
     <div class="info">
-      <nuxt-link :to="{}" class="title">{{ project.title }}</nuxt-link>
+      <nuxt-link :to="projectPageLocation" class="title">{{ project.title }}</nuxt-link>
 
-      <markdown-text class="description" :markdown="project.description"/>
+      <markdown-text class="description" :markdown="project.shortDescription"/>
 
       <!--<div class="meta">
         <div class="start-date"><label class="label">started:</label><span class="value">{{ startDate }}</span></div>
@@ -18,7 +18,7 @@
 
     <span class="bit-count">{{ project.bits.length - 1 }} more posts</span>
 
-    <nuxt-link :to="localePath({ name: 'project-projectSlug', params: { projectSlug: project.slug } })" class="goto-project-page-action link-action">go to project page</nuxt-link>
+    <nuxt-link :to="projectPageLocation" class="goto-project-page-action link-action">go to project page</nuxt-link>
   </section>
 </template>
 
@@ -37,12 +37,15 @@ export default {
   computed: {
     startDate() {
       return this.$formatDate(new Date(Number(this.project.startTimestamp)))
+    },
+    projectPageLocation() {
+      return this.localePath({ name: 'project-projectSlug', params: { projectSlug: this.project.slug } })
     }
   }
 }
 
 export let requiredProjectFields = [
-  'title', 'slug', 'url', 'description', 'startTimestamp', {
+  'title', 'slug', 'url', 'shortDescription', 'startTimestamp', {
     name: 'previewImages',
     fields: ['url']
   }, {

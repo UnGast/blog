@@ -3,7 +3,7 @@
     <div class="page-top">
       <h1 class="page-title">{{ bit.project.title }}</h1>
 
-      <p class="page-intro">{{ $t('projectBitPage.entryOf') }} {{ $formatDate(bit.timestamp) }}</p>
+      <p class="page-intro">{{ $t('projectBitPage.entryFrom') }} {{ $formatDate(bit.timestamp) }}</p>
     </div>
     
     <markdown-text :markdown="bit.text"/>

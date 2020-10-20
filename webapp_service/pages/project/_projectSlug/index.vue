@@ -58,10 +58,14 @@ export default {
 }
 
 .bits-heading {
-  margin-bottom: 24px;
+  margin-bottom: 48px;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  opacity: .7;
 }
 
 .project-bit-preview {
   margin-bottom: 48px;
+  border: 1px solid rgba(0,0,0,.1);
 }
 </style>

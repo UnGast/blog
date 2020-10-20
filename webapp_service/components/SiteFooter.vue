@@ -45,7 +45,6 @@ export default {
 }
 
 .center-column {
-  max-width: $max-text-column-width;
   margin: 0 auto;
   display: flex;
   padding: $screen-spacing-normal;

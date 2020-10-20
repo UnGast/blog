@@ -73,8 +73,9 @@ export let requiredProjectBitFields = [
   //text-decoration: underline;
   //color: $primary-color;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: 16px;
+  text-decoration: none;
 }
 
 .summary {

@@ -70,14 +70,14 @@ export let requiredProjectFields = [
 .info {
   display: flex;
   flex-direction: column;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 }
 
 .title {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: bold;
   margin-bottom: 16px;
-  text-transform: uppercase;
+  text-decoration: none;
 }
 
 .description {
@@ -108,8 +108,6 @@ export let requiredProjectFields = [
 
   .label {
     font-size: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
     opacity: .5;
     margin-bottom: 16px;
   }

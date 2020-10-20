@@ -14,6 +14,7 @@
       <nuxt-link class="link" :to="localePath({ name: 'index' })">{{ $t('navigation.articles') }}</nuxt-link>
       <!--<nuxt-link class="link" :to="localePath({ name: 'portfolio' })">{{ $t('navigation.portfolio') }}</nuxt-link>-->
       <nuxt-link class="link" :to="localePath({ name: 'tool-milling-parameters-calculator' })">{{ $t('navigation.millingParametersCalculator') }}</nuxt-link>
+      <nuxt-link class="link" :to="localePath({ name: 'projects' })">{{ $t('navigation.projects') }}</nuxt-link>
     </nav>
 
     <nav class="secondary-nav">

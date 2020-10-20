@@ -13,7 +13,8 @@
     "articles": "articles",
     "portfolio": "portfolio",
     "about": "about",
-    "millingParametersCalculator": "milling parameters calculator"
+    "millingParametersCalculator": "milling parameters calculator",
+    "projects": "projects"
   },
   "articlePage": {
     "moreArticles": "more articles"
@@ -118,12 +119,12 @@
     }
   },
   "projectDetailPage": {
-    "bitsHeading": "bits"
+    "bitsHeading": "posts"
   },
   "projectBitPreview": {
     "showFullAction": "show full post"
   },
   "projectBitPage": {
-    "entryOf": "Entry from"
+    "entryFrom": "Post from"
   }
 }

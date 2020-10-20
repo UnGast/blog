@@ -41,18 +41,34 @@ md.block.ruler.before('paragraph', 'katex-block', (state, startLine, endLine, si
 })
 
 md.block.ruler.before('paragraph', 'slider', (state, startLine, endLine, silent) => {
-  const nextLine = startLine + 1
+  const imagesContentStartLine = startLine + 1
   
-  if (nextLine >= endLine) return false
+  if (imagesContentStartLine >= endLine) return false
 
-  const start = state.bMarks[startLine] + state.tShift[startLine],
-        max = state.eMarks[startLine]
+  const keywordStart = state.bMarks[startLine] + state.tShift[startLine],
+        keywordMax = state.eMarks[startLine]
 
-  const blockContent = state.src.substring(start, max)
+  const keywordContent = state.src.substring(keywordStart, keywordMax)
 
-  if (blockContent === 'slider') {
-    state.tokens.push(new state.Token('slider', '', 0))
-    state.line = nextLine
+  const imagesContent = state.getLines(imagesContentStartLine, endLine, state.blkIndent, false).trim();
+
+  if (keywordContent === 'slider') {
+    let oldParentType = state.parentType
+    state.parentType = 'slider'
+
+    let token: typeof state.Token
+    
+    token = state.push('slider_open', '', 0)
+
+    token = state.push('inline', '', 0)
+    token.children = []
+    token.content = imagesContent
+    
+    token = state.push('slider_close', '', 0)
+
+    state.line = endLine
+    state.parentType = oldParentType
+
     return true
   }
 })
@@ -112,8 +128,11 @@ export function makeAst(tokens) {
       ast.push(...makeAst(token.children))
     } else if (token.type === 'text') {
       ast.push({ type: 'text', text: token.content })
-    } else if (token.type === 'slider') {
-      ast.push({ type: 'slider' })
+    } else if (token.type === 'slider_open') {
+      let childTokens = tokens.slice(i + 1)
+      childTokens = childTokens.slice(0, childTokens.findIndex(token => token.type === 'slider_close'))
+      ast.push({ type: 'slider', images: makeAst(childTokens) })
+      i += childTokens.length
     } else if (token.type === 'image') {
       ast.push({ type: 'image', src: token.attrGet('src'), alt: token.content })
     } else if (token.type === 'blank') {

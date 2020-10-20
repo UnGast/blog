@@ -1,20 +1,18 @@
 <template>
   <div class="slider">
-    <img class="image" :src="getImageUrl(image)" v-for="image in material.previewImages" :key="image"/>
+    <cimage v-for="image in images" :key="image.url" :image="image"/>
   </div>
 </template>
 
 <script>
+import Image from '@/components/Image'
+
 export default {
+  components: { 'cimage': Image },
   props: {
-    material: {
-      type: Object,
+    images: {
+      type: Array,
       required: true
-    }
-  },
-  methods: {
-    getImageUrl(basename) {
-      return this.$store.getters.getImageUrl(this.material, basename)
     }
   }
 }
@@ -23,8 +21,6 @@ export default {
 <style lang="scss" scoped>
 .slider {
   display: flex;
-  max-width: 100%;
-  overflow-x: scroll;
 }
 
 .image {

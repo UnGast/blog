@@ -3,6 +3,7 @@ import Vue from 'vue'
 import CodeBlock from '@/components/CodeBlock'
 import CodeSnippet from '@/components/CodeSnippet'
 import Image from '@/components/Image'
+import Slider from '@/components/Slider'
 import Katex from '@/components/Katex'
 import { convertMarkdownToAst } from '@/lib/markdown'
 
@@ -14,7 +15,7 @@ export default {
     }
   },
   methods: {
-  renderAst(ast, h) {
+    renderAst(ast, h) {
       let vueNodes = []
       for (let i = 0; i < ast.length; i++) {
         let node = ast[i]
@@ -28,7 +29,7 @@ export default {
         } else if (node.type === 'slider') {
           vueNodes.push(h(Slider, {
             props: {
-              material: this.material
+              images: node.images.map(imageNode => ({ url: imageNode.src, description: imageNode.alt }))
             }
           }))
         } else if (node.type === 'image') {
@@ -55,6 +56,7 @@ export default {
           console.debug('No render implementation for node', node)
         }
       }
+      
       return vueNodes
     },
   },

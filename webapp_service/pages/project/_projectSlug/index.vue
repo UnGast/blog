@@ -5,7 +5,7 @@
         <h1 class="page-title">{{ project.title }}</h1>
       </div>
 
-      <markdown-text class="description" :markdown="project.fullDescription"/>
+      <markdown-text class="description full-width-elements" :markdown="project.fullDescription"/>
 
       <div class="bits">
         <h2 class="bits-heading">{{ $t('projectDetailPage.bitsHeading') }}</h2>

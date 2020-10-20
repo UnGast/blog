@@ -1,0 +1,68 @@
+.running-text {
+  line-height: 1.7;
+  font-size: 1rem;
+  white-space: normal;
+  font-family: "Open Sans";
+
+  h1 {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+  }
+
+  p {
+    font-size: 1rem;
+    font-family: "Open Sans";
+  }
+
+  a {
+    font-family: "Open Sans";
+  }
+
+  .code-block {
+    margin: 32px 0 48px 0;
+  }
+
+  .code-snippet {
+    max-width: 100%;
+  }
+
+  .image {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: $breakpoint-small) {
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+    }
+  }
+
+  &.full-width-elements {
+    .slider {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      margin-left: -50vw;
+    }
+  }
+}

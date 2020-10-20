@@ -10,10 +10,6 @@ export default {
     markdown: {
       type: String,
       required: true
-    },
-    imageBaseUrl: {
-      type: String,
-      required: true
     }
   },
   methods: {
@@ -35,7 +31,7 @@ export default {
             }
           }))
         } else if (node.type === 'image') {
-          vueNodes.push(h('img', { class: 'image', attrs: { alt: node.alt, src: this.imageBaseUrl.replace(/\/?$/, '/' + node.src) } }))
+          vueNodes.push(h('img', { class: 'image', attrs: { alt: node.alt, src: node.src } }))
         } else if (node.type === 'blank') {
           vueNodes.push(h('br'))
         } else if (node.type === 'italic') {

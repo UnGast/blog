@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import CodeBlock from '@/components/CodeBlock'
 import CodeSnippet from '@/components/CodeSnippet'
+import Image from '@/components/Image'
 import Katex from '@/components/Katex'
 import { convertMarkdownToAst } from '@/lib/markdown'
 
@@ -31,7 +32,7 @@ export default {
             }
           }))
         } else if (node.type === 'image') {
-          vueNodes.push(h('img', { class: 'image', attrs: { alt: node.alt, src: node.src } }))
+          vueNodes.push(h(Image, { props: { image: { url: node.src, alt: node.alt } }}))
         } else if (node.type === 'blank') {
           vueNodes.push(h('br'))
         } else if (node.type === 'italic') {

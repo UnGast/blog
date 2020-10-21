@@ -4,6 +4,32 @@
     {
       "icon": {
         "paths": [
+          "M214 768h596v86h-596v-86zM810 384l-298 298-298-298h170v-256h256v256h170z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "file_download",
+          "get_app"
+        ],
+        "grid": 24
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "file_download, get_app",
+        "id": 326,
+        "order": 6,
+        "prevSize": 24,
+        "name": "file_download"
+      },
+      "setIdx": 0,
+      "setId": 2,
+      "iconIdx": 326
+    },
+    {
+      "icon": {
+        "paths": [
           "M854 470v84h-520l238 240-60 60-342-342 342-342 60 60-238 240h520z"
         ],
         "attrs": [],
@@ -16,15 +42,15 @@
       },
       "attrs": [],
       "properties": {
-        "order": 3,
+        "order": 5,
         "ligatures": "arrow_back",
         "id": 589,
         "prevSize": 24,
         "name": "arrow_back"
       },
-      "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 589
+      "setIdx": 1,
+      "setId": 1,
+      "iconIdx": 0
     },
     {
       "icon": {
@@ -47,9 +73,9 @@
         "prevSize": 24,
         "name": "arrow_forward"
       },
-      "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 593
+      "setIdx": 1,
+      "setId": 1,
+      "iconIdx": 1
     },
     {
       "icon": {
@@ -72,9 +98,9 @@
         "prevSize": 24,
         "name": "more_vert"
       },
-      "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 602
+      "setIdx": 1,
+      "setId": 1,
+      "iconIdx": 2
     }
   ],
   "height": 1024,
@@ -102,7 +128,10 @@
       "color": 0,
       "bgColor": 16777215,
       "classSelector": ".icon",
-      "name": "icomoon"
+      "name": "icomoon",
+      "height": 32,
+      "columns": 16,
+      "margin": 16
     },
     "historySize": 50,
     "showCodes": true,

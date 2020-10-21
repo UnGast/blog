@@ -34,6 +34,10 @@ export default {
           }))
         } else if (node.type === 'image') {
           vueNodes.push(h(Image, { props: { image: { url: node.src, description: node.alt } }}))
+        } else if (node.type === 'video') {
+          vueNodes.push(h('video', { class: 'video', attrs: { controls: true } }, [
+            h('source', { attrs: { src: node.url } })
+          ]))
         } else if (node.type === 'blank') {
           vueNodes.push(h('br'))
         } else if (node.type === 'italic') {

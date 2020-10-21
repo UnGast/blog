@@ -2,6 +2,8 @@ import MarkdownIt from 'markdown-it'
 
 const md = MarkdownIt()
 
+console.log('RULER', md.inline.ruler)
+
 md.inline.ruler.before('link', 'katex-snippet', (state, silent) => {
   let followingContent = state.src.substring(state.pos)
   let matches = /^\[tex:(.*?)\:tex]/.exec(followingContent)
@@ -11,6 +13,24 @@ md.inline.ruler.before('link', 'katex-snippet', (state, silent) => {
   if (!silent) {
     let token = state.push('katex-snippet', '', 0)
     token.content = matches[1]
+  }
+  state.pos += matches[0].length
+
+  return true
+})
+
+md.inline.ruler.before('backticks', 'video', (state, silent) => {
+  let followingContent = state.src.substring(state.pos)
+  let matches = /^\[video (.*?)\]/.exec(followingContent)
+  
+  console.log('GOT VIDEO MATCHES?', followingContent, matches)
+
+  if (matches === null) return false
+  
+  if (!silent) {
+
+    let token = state.push('video', '', 0)
+    token.url = matches[1]
   }
   state.pos += matches[0].length
 
@@ -153,6 +173,11 @@ export function makeAst(tokens) {
         children: makeAst(childTokens)
       })
       i += 2
+    } else if (token.type === 'video') {
+      ast.push({
+        type: 'video',
+        url: token.url
+      })
     } else if (token.type === 'downloads') {
       ast.push({
         type: 'downloads'

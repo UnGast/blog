@@ -44,8 +44,15 @@ export default {
           vueNodes.push(h('span', { style: 'font-style: italic' }, this.renderAst(node.children, h)))
         } else if (node.type === 'bold') {
           vueNodes.push(h('span', { style: 'font-weight: bold' }, this.renderAst(node.children, h)))
-        } else if (node.type === 'downloads') {
-          vueNodes.push(this.renderDownloads(h))
+        } else if (node.type === 'download') {
+          console.log('GOT DOWNLOAD', node)
+          vueNodes.push(h('a', {
+            class: 'button',
+            attrs: {
+              href: node.url,
+              download: node.downloadFilename || true
+            }
+          }, [this._v('download')]))
         } else if (node.type === 'code_block') {
           vueNodes.push(h(CodeBlock, { props: { code: node.content } }))
         } else if (node.type === 'code_snippet') {

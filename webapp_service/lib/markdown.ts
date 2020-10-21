@@ -2,8 +2,6 @@ import MarkdownIt from 'markdown-it'
 
 const md = MarkdownIt()
 
-console.log('RULER', md.inline.ruler)
-
 md.inline.ruler.before('link', 'katex-snippet', (state, silent) => {
   let followingContent = state.src.substring(state.pos)
   let matches = /^\[tex:(.*?)\:tex]/.exec(followingContent)
@@ -19,12 +17,27 @@ md.inline.ruler.before('link', 'katex-snippet', (state, silent) => {
   return true
 })
 
+md.inline.ruler.before('backticks', 'download', (state, silent) => {
+  let followingContent = state.src.substring(state.pos)
+  let matches = /^\[download (.*?)( (.*?))?\]/.exec(followingContent)
+  
+  if (matches === null) return false
+  
+  if (!silent) {
+    console.log('GOT MATCHES', matches)
+    let token = state.push('download', '', 0)
+    token.url = matches[1]
+    token.downloadFilename = matches[3]
+  }
+  state.pos += matches[0].length
+
+  return true
+})
+
 md.inline.ruler.before('backticks', 'video', (state, silent) => {
   let followingContent = state.src.substring(state.pos)
   let matches = /^\[video (.*?)\]/.exec(followingContent)
   
-  console.log('GOT VIDEO MATCHES?', followingContent, matches)
-
   if (matches === null) return false
   
   if (!silent) {
@@ -110,23 +123,6 @@ md.block.ruler.before('paragraph', 'blank', (state, startLine, endLine, slient) 
   }
 })
 
-md.block.ruler.before('paragraph', 'downloads', (state, startLine, endLine, slient) => {
-  const nextLine = startLine + 1
-  
-  if (nextLine >= endLine) { return false }
-
-  const start = state.bMarks[startLine] + state.tShift[startLine],
-        max = state.eMarks[startLine]
-
-  const blockContent = state.src.substring(start, max)
-
-  if (blockContent === 'downloads') {
-    state.tokens.push(new state.Token('downloads', '', 0))
-    state.line = nextLine
-    return true
-  }
-})
-
 export function makeAst(tokens) {
   const ast = []
 
@@ -155,6 +151,8 @@ export function makeAst(tokens) {
       i += childTokens.length
     } else if (token.type === 'image') {
       ast.push({ type: 'image', src: token.attrGet('src'), alt: token.content })
+    } else if (token.type === 'download') {
+      ast.push({ type: 'download', url: token.url, downloadFilename: token.downloadFilename })
     } else if (token.type === 'blank') {
       ast.push({ type: 'blank' })
     } else if (token.type === 'em_open') {

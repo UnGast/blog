@@ -79,7 +79,7 @@ export default class FSProjectManager {
       if (fs.existsSync(path.resolve(bitsDir, bitDir, 'index.json'))) {
         return await this.readBit(path.resolve(bitsDir, bitDir), projectId)
       }
-    }))).filter(bit => bit)
+    }))).filter(bit => bit).sort((bit1, bit2) => bit2.timestamp.getTime() - bit1.timestamp.getTime())
   }
 
   async readBit(bitDir: string, projectId: string): Promise<ProjectBit | null> {

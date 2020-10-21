@@ -15,6 +15,8 @@ export let typeDefs = gql`
     summary: String!
     text: String!
     project: Project!
+    next: ProjectBit
+    previous: ProjectBit
   }
 
   type Project {
@@ -75,6 +77,16 @@ export let resolvers = {
   ProjectBit: {
     async project(parent) {
       return (await database.getProjects()).find((project) => project.id === parent.projectId)
+    },
+    async next(parent: ProjectBit) {
+      let project = (await database.getProjects()).find(project => project.id === parent.projectId)
+      let ownIndex = project.bits.findIndex(bit => bit.timestamp.getTime() === parent.timestamp.getTime())
+      return project.bits[ownIndex - 1]
+    },
+    async previous(parent) {
+      let project = (await database.getProjects()).find(project => project.id === parent.projectId)
+      let ownIndex = project.bits.findIndex(bit => bit.timestamp.getTime() === parent.timestamp.getTime())
+      return project.bits[ownIndex + 1]
     }
   }
 }

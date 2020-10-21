@@ -32,8 +32,6 @@ export default {
   async asyncData(context) {
     let client = context.app.apolloProvider.defaultClient
 
-    console.log('ASYNC CONTEXT', context.params, context.route)
-
     let { data } = await client.query({
       query: gql`query project($slug: String!) {
         project(slug: $slug) {
@@ -66,6 +64,5 @@ export default {
 
 .project-bit-preview {
   margin-bottom: 48px;
-  border: 1px solid rgba(0,0,0,.1);
 }
 </style>

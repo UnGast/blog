@@ -113,7 +113,6 @@ export let requiredProjectFields = [
   }
 
   .project-bit-preview {
-    border: 1px solid rgba(0,0,0,.1);
   }
 }
 

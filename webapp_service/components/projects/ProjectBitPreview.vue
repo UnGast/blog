@@ -49,6 +49,7 @@ export let requiredProjectBitFields = [
 
 .project-bit-preview {
   display: flex;
+  border: 1px solid rgba(0,0,0,.1);
 }
 
 .preview-image {

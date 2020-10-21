@@ -125,6 +125,9 @@
     "showFullAction": "show full post"
   },
   "projectBitPage": {
-    "entryFrom": "Post from"
+    "entryFrom": "Post from",
+    "previousBitHeading": "previous",
+    "nextBitHeading": "next",
+    "backToProjectPageAction": "back to project page"
   }
 }

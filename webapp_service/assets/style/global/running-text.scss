@@ -39,20 +39,23 @@
 
   .image {
     display: block;
-    max-width: 100%;
-    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    margin: 2rem auto;
   }
 
   .video {
     max-width: 100%;
+    margin: 2rem 0;
   }
 
   .slider {
-    margin: 16px 0;
+    margin: 2rem 0;
   }
 
   .download {
-    margin: 8px 0;
+    margin: 0.25rem;
+    margin-left: 0;
   }
 
   @media screen and (max-width: $breakpoint-small) {

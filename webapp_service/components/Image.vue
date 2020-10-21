@@ -1,7 +1,7 @@
 <template>
   <div class="image">
     <img class="the-image" :src="image.url" :alt="image.description"/>
-    <span class="description">{{ image.description }}</span>
+    <span v-if="showDescription" class="description">{{ image.description }}</span>
   </div>
 </template>
 
@@ -11,6 +11,10 @@ export default {
     image: {
       type: Object,
       required: true
+    },
+    showDescription: {
+      type: Boolean,
+      default: true
     }
   }
 }
@@ -26,9 +30,8 @@ export default {
 }
 
 .the-image {
-  width: 100%;
-  max-height: 100%;
-  height: auto;
+  width: inherit;
+  height: inherit;
   margin-bottom: 8px;
 }
 

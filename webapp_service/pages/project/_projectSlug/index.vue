@@ -54,7 +54,7 @@ export default {
 
 <style lang="scss" scoped>
 .description {
-  margin-bottom: 48px;
+  margin-bottom: 128px;
 }
 
 .bits-heading {

@@ -16,11 +16,13 @@ export default {
 <style lang="scss" scoped>
 .icon {
   font-size: 0;
+  width: 1rem;
+  height: 1rem;
 }
 
 svg {
   fill: currentColor;
-  width: 1rem;
-  height: 1rem;
+  width: inherit;
+  height: inherit;
 }
 </style>

@@ -83,9 +83,17 @@ md.block.ruler.before('paragraph', 'slider', (state, startLine, endLine, silent)
 
   const keywordContent = state.src.substring(keywordStart, keywordMax)
 
-  const imagesContent = state.getLines(imagesContentStartLine, endLine, state.blkIndent, false).trim();
-
   if (keywordContent === 'slider') {
+
+    let imagesContentEndLine = imagesContentStartLine
+    
+
+    while (imagesContentEndLine < endLine && !state.isEmpty(imagesContentEndLine)) {
+      imagesContentEndLine += 1
+    }
+
+    const imagesContent = state.getLines(imagesContentStartLine, imagesContentEndLine, state.blkIndent, false).trim();
+
     let oldParentType = state.parentType
     state.parentType = 'slider'
 
@@ -99,7 +107,7 @@ md.block.ruler.before('paragraph', 'slider', (state, startLine, endLine, silent)
     
     token = state.push('slider_close', '', 0)
 
-    state.line = endLine
+    state.line = imagesContentEndLine
     state.parentType = oldParentType
 
     return true

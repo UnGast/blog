@@ -4,6 +4,7 @@ import CodeBlock from '@/components/CodeBlock'
 import CodeSnippet from '@/components/CodeSnippet'
 import Image from '@/components/Image'
 import Slider from '@/components/Slider'
+import Download from '@/components/Download'
 import Katex from '@/components/Katex'
 import { convertMarkdownToAst } from '@/lib/markdown'
 
@@ -45,12 +46,9 @@ export default {
         } else if (node.type === 'bold') {
           vueNodes.push(h('span', { style: 'font-weight: bold' }, this.renderAst(node.children, h)))
         } else if (node.type === 'download') {
-          console.log('GOT DOWNLOAD', node)
-          vueNodes.push(h('a', {
-            class: 'button',
-            attrs: {
-              href: node.url,
-              download: node.downloadFilename || true
+          vueNodes.push(h(Download, {
+            props: {
+              download: node
             }
           }, [this._v('download')]))
         } else if (node.type === 'code_block') {

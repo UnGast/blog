@@ -24,7 +24,6 @@ md.inline.ruler.before('backticks', 'download', (state, silent) => {
   if (matches === null) return false
   
   if (!silent) {
-    console.log('GOT MATCHES', matches)
     let token = state.push('download', '', 0)
     token.url = matches[1]
     token.downloadFilename = matches[3]

@@ -22,7 +22,11 @@ if (process.env.NODE_ENV === 'development') {
             'assets',
             req.params.assetName)
 
-        res.sendFile(assetFilePath)
+        if ('download' in req.query) {
+            res.download(assetFilePath, typeof req.query.download ? req.query.download as string : '')
+        } else {
+            res.sendFile(assetFilePath)
+        }
     })
 
     app.use('/project/:projectId/bit/:bitId/asset/:assetName', (req, res, next) => {
@@ -36,7 +40,11 @@ if (process.env.NODE_ENV === 'development') {
             'assets',
             req.params.assetName)
 
-        res.sendFile(assetFilePath)
+        if ('download' in req.query) {
+            res.download(assetFilePath, typeof req.query.download ? req.query.download as string : '')
+        } else {
+            res.sendFile(assetFilePath)
+        }
     })
 }
 

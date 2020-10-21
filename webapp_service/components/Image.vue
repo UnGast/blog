@@ -1,6 +1,6 @@
 <template>
   <div class="image">
-    <img class="the-image" :src="image.url" :alt="image.description"/>
+    <img class="the-image" :src="image.url" :alt="image.alt"/>
     <span v-if="showDescription" class="description">{{ image.description }}</span>
   </div>
 </template>

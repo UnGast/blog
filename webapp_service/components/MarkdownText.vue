@@ -30,11 +30,11 @@ export default {
         } else if (node.type === 'slider') {
           vueNodes.push(h(Slider, {
             props: {
-              images: node.images.map(imageNode => ({ url: imageNode.src, description: imageNode.alt }))
+              images: node.images
             }
           }))
         } else if (node.type === 'image') {
-          vueNodes.push(h(Image, { props: { image: { url: node.src, description: node.alt } }}))
+          vueNodes.push(h(Image, { props: { image: node }}))
         } else if (node.type === 'video') {
           vueNodes.push(h('video', { class: 'video', attrs: { controls: true } }, [
             h('source', { attrs: { src: node.url } })

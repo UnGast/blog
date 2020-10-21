@@ -50,6 +50,24 @@ md.inline.ruler.before('backticks', 'video', (state, silent) => {
   return true
 })
 
+// replace image rule with custom image syntax
+md.inline.ruler.before('backticks', 'image', (state, silent) => {
+  let followingContent = state.src.substring(state.pos)
+  let matches = /^\[image (.*?)\](\((.*?)(\|(.*?))?\))?/.exec(followingContent)
+  
+  if (matches === null) return false
+  
+  if (!silent) {
+    let token = state.push('image', '', 0)
+    token.url = matches[1]
+    token.alt = matches[3]
+    token.description = matches[5]
+  }
+  state.pos += matches[0].length
+
+  return true
+})
+
 md.block.ruler.before('paragraph', 'katex-block', (state, startLine, endLine, silent) => {
   const nextLine = startLine + 1
   
@@ -158,7 +176,7 @@ export function makeAst(tokens) {
       ast.push({ type: 'slider', images: makeAst(childTokens) })
       i += childTokens.length
     } else if (token.type === 'image') {
-      ast.push({ type: 'image', src: token.attrGet('src'), alt: token.content })
+      ast.push({ type: 'image', url: token.url, alt: token.alt, description: token.description })
     } else if (token.type === 'download') {
       ast.push({ type: 'download', url: token.url, downloadFilename: token.downloadFilename, text: token.text })
     } else if (token.type === 'blank') {

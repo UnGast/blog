@@ -46,11 +46,7 @@ export default {
   },
   watch: {
     activeImageIndex() {
-      console.log('UPDATE IMAGE TRANSLATION', this.imageTranslation, this.$refs.images[this.activeImageIndex])
       this.imageTranslation = -this.$refs.images[this.activeImageIndex].offsetLeft
-    },
-    imageTranslation() {
-      console.log('IMAGE TRANSLATION CHANGED', this.imageTranslation)
     }
   },
   methods: {

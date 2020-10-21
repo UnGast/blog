@@ -1,7 +1,8 @@
 <template>
   <a class="download" :href="downloadUrl">
     <icon name="file_download"/>
-    <span class="text">download {{ download.downloadFilename }}</span>
+    <span class="download-label">download</span>
+    <span class="download-text" v-if="download.text || download.downloadFilename">{{ download.text || download.downloadFilename }}</span>
   </a>
 </template>
 
@@ -40,6 +41,14 @@ export default {
   margin-right: 8px;
 }
 
-.text {
+.download-label {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: .8rem;
+}
+
+.download-text {
+  margin-left: 8px;
+  font-size: .8rem;
 }
 </style>

@@ -19,7 +19,7 @@ md.inline.ruler.before('link', 'katex-snippet', (state, silent) => {
 
 md.inline.ruler.before('backticks', 'download', (state, silent) => {
   let followingContent = state.src.substring(state.pos)
-  let matches = /^\[download (.*?)( (.*?))?\]/.exec(followingContent)
+  let matches = /^\[download (.*?)( (.*?))?\](\((.*?)\))?/.exec(followingContent)
   
   if (matches === null) return false
   
@@ -27,6 +27,7 @@ md.inline.ruler.before('backticks', 'download', (state, silent) => {
     let token = state.push('download', '', 0)
     token.url = matches[1]
     token.downloadFilename = matches[3]
+    token.text = matches[5]
   }
   state.pos += matches[0].length
 
@@ -151,7 +152,7 @@ export function makeAst(tokens) {
     } else if (token.type === 'image') {
       ast.push({ type: 'image', src: token.attrGet('src'), alt: token.content })
     } else if (token.type === 'download') {
-      ast.push({ type: 'download', url: token.url, downloadFilename: token.downloadFilename })
+      ast.push({ type: 'download', url: token.url, downloadFilename: token.downloadFilename, text: token.text })
     } else if (token.type === 'blank') {
       ast.push({ type: 'blank' })
     } else if (token.type === 'em_open') {

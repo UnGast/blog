@@ -1,9 +1,11 @@
 import * as path from 'path'
 import FSProjectManager from '@/models/projects/FSProjectManager'
 import Project from '@/models/projects/Project'
+import FSTagsManager from '@/models/FSTagsManager'
 
 class Database {
-  projectManager = new FSProjectManager()
+  tagsManager = new FSTagsManager(path.resolve(process.env.CONTENT_DIR_PATH, 'tags.json'))
+  projectManager = new FSProjectManager(this.tagsManager)
   initPromise: Promise<any>
   projects: Project[]
 

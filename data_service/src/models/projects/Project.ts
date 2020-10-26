@@ -1,12 +1,12 @@
 import ProjectBit from "./ProjectBit"
 import Image from './Image'
+import Tag from "../Tag"
 
 export default interface Project {
   id: string
   title: string
   slug: string
-  /** @deprecated since always */
-  url: string
+  tags: Tag[]
   shortDescription: string
   fullDescription: string
   bits: ProjectBit[]

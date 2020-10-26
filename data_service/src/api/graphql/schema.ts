@@ -4,9 +4,13 @@ import database from '@/database/Database'
 import ProjectBit from '@/models/projects/ProjectBit'
 
 export let typeDefs = gql`
-
   type Image {
     url: String!
+  }
+
+  type Tag {
+    slug: String!
+    name: String!
   }
 
   type ProjectBit {
@@ -22,7 +26,7 @@ export let typeDefs = gql`
   type Project {
     title: String!
     slug: String!
-    url: String!
+    tags: [Tag]!
     shortDescription: String!
     fullDescription: String!
     previewImages: [Image]!

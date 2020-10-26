@@ -2,12 +2,15 @@ import Project from "./Project"
 import Image from './Image'
 import * as fs from 'fs'
 import * as path from 'path'
-import { isValid as isValidDate } from 'date-fns'
+import { isValid as isValidDate, parse } from 'date-fns'
 import ProjectBit from "./ProjectBit"
 import { parseDatetime } from "@/helpers/date"
 import * as constants from '@/constants'
+import FSTagsManager from "../FSTagsManager"
 
 export default class FSProjectManager {
+  constructor(private tagsManager: FSTagsManager) {}
+
   async readAllProjects(projectsDir: string): Promise<Project[]> {
     let projectDirs = await fs.promises.readdir(projectsDir)
 
@@ -29,6 +32,9 @@ export default class FSProjectManager {
 
       let parsedIndexData = JSON.parse(rawIndexData)
 
+      let tags = (await this.tagsManager.readAllTags())
+        .filter(tag => parsedIndexData.tags.indexOf(tag.id) > -1)
+
       let shortDescription = await fs.promises.readFile(path.resolve(projectDir, 'short_description.md'), 'utf-8')
       shortDescription = await this.preprocessProjectMarkdown(shortDescription, id)
 
@@ -45,7 +51,7 @@ export default class FSProjectManager {
         id, 
         title: parsedIndexData.title,
         slug: parsedIndexData.slug,
-        url: parsedIndexData.url,
+        tags,
         shortDescription,
         fullDescription,
         previewImages,

@@ -45,7 +45,7 @@ export default {
 }
 
 export let requiredProjectFields = [
-  'title', 'slug', 'url', 'shortDescription', 'startTimestamp', {
+  'title', 'slug', 'shortDescription', 'startTimestamp', {
     name: 'previewImages',
     fields: ['url']
   }, {

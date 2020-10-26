@@ -13,14 +13,14 @@ if (process.env.NODE_ENV === 'development') {
 
     console.log('Serving content assets in development mode.')
 
-    app.use('/project/:projectId/asset/:assetName', (req, res, next) => {
+    app.use('/project/:projectId/asset(/*)', (req, res, next) => {
 
         let assetFilePath = path.resolve(
             process.env.CONTENT_DIR_PATH,
             'projects',
             req.params.projectId,
             'assets',
-            req.params.assetName)
+            req.params['1'])
 
         if ('download' in req.query) {
             res.download(assetFilePath, typeof req.query.download ? req.query.download as string : '')
@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === 'development') {
         }
     })
 
-    app.use('/project/:projectId/bit/:bitId/asset/:assetName', (req, res, next) => {
+    app.use('/project/:projectId/bit/:bitId/asset(/*)', (req, res, next) => {
 
         let assetFilePath = path.resolve(
             process.env.CONTENT_DIR_PATH,
@@ -38,7 +38,7 @@ if (process.env.NODE_ENV === 'development') {
             'bits',
             req.params.bitId,
             'assets',
-            req.params.assetName)
+            req.params['1'])
 
         if ('download' in req.query) {
             res.download(assetFilePath, typeof req.query.download ? req.query.download as string : '')

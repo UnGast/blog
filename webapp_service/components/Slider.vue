@@ -10,7 +10,7 @@
         :style="{ transform: `translateX(${imageTranslation}px)` }">
         <cimage :image="image" :showDescription="false"/>
 
-        <span class="description">{{ image.description }}</span>
+        <span class="description">{{ image.description || image.alt }}</span>
       </div>
     </div>
 

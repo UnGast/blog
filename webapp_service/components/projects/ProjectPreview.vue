@@ -5,6 +5,10 @@
 
       <markdown-text class="description" :markdown="project.shortDescription"/>
 
+      <div class="tags">
+        <span class="tag" v-for="tag in project.tags" :key="tag.slug">{{ tag.name }}</span>
+      </div>
+
       <!--<div class="meta">
         <div class="start-date"><label class="label">started:</label><span class="value">{{ startDate }}</span></div>
       </div>-->
@@ -51,6 +55,9 @@ export let requiredProjectFields = [
   }, {
     name: 'bits',
     fields: requiredProjectBitFields
+  }, {
+    name: 'tags',
+    fields: [ 'name', 'slug' ]
   }
 ]
 </script>
@@ -70,7 +77,7 @@ export let requiredProjectFields = [
 .info {
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 }
 
 .title {
@@ -81,6 +88,7 @@ export let requiredProjectFields = [
 }
 
 .description {
+  margin-bottom: 16px;
 }
 
 .meta {

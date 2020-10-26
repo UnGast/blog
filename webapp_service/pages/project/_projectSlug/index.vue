@@ -3,6 +3,10 @@
     <template v-if="!$apollo.loading && project">
       <div class="page-top">
         <h1 class="page-title">{{ project.title }}</h1>
+
+        <div class="tags">
+          <span class="tag" v-for="tag in project.tags" :key="tag.slug">{{ tag.name }}</span>
+        </div>
       </div>
 
       <markdown-text class="description full-width-elements" :markdown="project.fullDescription"/>
@@ -24,6 +28,9 @@ import { default as ProjectBitPreview, requiredProjectBitFields } from '@/compon
 let requiredProjectFields = [
   'title', 'slug', 'fullDescription', {
     name: 'bits', fields: requiredProjectBitFields
+  }, {
+    name: 'tags',
+    fields: [ 'name', 'slug' ]
   }
 ]
 
@@ -51,6 +58,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.page-title {
+  margin-bottom: 16px;
+}
+
 .description {
   margin-bottom: 128px;
 }

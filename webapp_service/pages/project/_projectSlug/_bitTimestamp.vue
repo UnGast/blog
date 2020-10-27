@@ -1,5 +1,5 @@
 <template>
-  <section class="project-bit-page center-column-page wide">
+  <section class="project-bit-page center-column-page">
     <div class="page-top">
       <h1 class="page-title">{{ bit.project.title }}</h1>
 

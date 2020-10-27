@@ -149,7 +149,16 @@ md.block.ruler.before('paragraph', 'blank', (state, startLine, endLine, slient) 
   }
 })
 
+function getChildTokens(args: { allTokens: any[], from: number, endTokenType: string, endTokenLevel: number }): any[] {
+  let childTokens = args.allTokens.slice(args.from + 1)
+  childTokens = childTokens.slice(0, childTokens.findIndex(token => 
+    token.type === args.endTokenType && token.level === args.endTokenLevel)) 
+  return childTokens
+}
+
 export function makeAst(tokens) {
+  console.log('CALL MAKE AST WITH TOKENS', tokens)
+
   const ast = []
 
   for (let i = 0; i < tokens.length; i++) {
@@ -158,14 +167,29 @@ export function makeAst(tokens) {
       ast.push({ type: 'heading', level: tokens[i].tag.replace('h', ''), text: tokens[i + 1].content })
       i += 2
     } else if (token.type === 'paragraph_open') {
-      let childTokens = tokens.slice(i + 1)
-      childTokens = childTokens.slice(0, childTokens.findIndex(token => token.type === 'paragraph_close')) 
-      const paragraph = {
+    let childTokens = getChildTokens({ from: i, allTokens: tokens, endTokenLevel: token.level, endTokenType: 'paragraph_close' })
+     const paragraph = {
         type: 'paragraph',
         children: makeAst(childTokens)
       }
       ast.push(paragraph)
-      i += childTokens.length
+      i += childTokens.length + 1
+    } else if (token.type === 'list_item_open') {
+      let childTokens = getChildTokens({ from: i, allTokens: tokens, endTokenLevel: token.level, endTokenType: 'list_item_close' })
+      const listItem = {
+        type: 'listItem',
+        children: makeAst(childTokens)
+      }
+      ast.push(listItem)
+      i += childTokens.length + 1
+    } else if (token.type === 'bullet_list_open') {
+    let childTokens = getChildTokens({ from: i, allTokens: tokens, endTokenLevel: token.level, endTokenType: 'bullet_list_close' })
+     const bulletList = {
+        type: 'bulletList',
+        children: makeAst(childTokens)
+      }
+      ast.push(bulletList)
+      i += childTokens.length + 1
     } else if (token.type === 'inline') {
       ast.push(...makeAst(token.children))
     } else if (token.type === 'text') {
@@ -182,21 +206,19 @@ export function makeAst(tokens) {
     } else if (token.type === 'blank') {
       ast.push({ type: 'blank' })
     } else if (token.type === 'em_open') {
-      let childTokens = tokens.slice(i + 1)
-      childTokens = childTokens.slice(0, childTokens.findIndex(token => token.type === 'em_close')) 
+      let childTokens = getChildTokens({ from: i, allTokens: tokens, endTokenLevel: token.level, endTokenType: 'em_close' })
       ast.push({
         type: 'italic',
         children: makeAst(childTokens)
       })
-      i += 2
+      i += childTokens.length + 1
     } else if (token.type === 'strong_open') {
-      let childTokens = tokens.slice(i + 1)
-      childTokens = childTokens.slice(0, childTokens.findIndex(token => token.type === 'strong_close')) 
+      let childTokens = getChildTokens({ from: i, allTokens: tokens, endTokenLevel: token.level, endTokenType: 'strong_close' })
       ast.push({
         type: 'bold',
         children: makeAst(childTokens)
       })
-      i += 2
+      i += childTokens.length + 1
     } else if (token.type === 'video') {
       ast.push({
         type: 'video',

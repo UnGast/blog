@@ -24,6 +24,10 @@ export default {
           vueNodes.push(h(`h${node.level}`, node.text))
         } else if (node.type === 'paragraph') {
           vueNodes.push(h('p', this.renderAst(node.children, h)))
+        } else if (node.type === 'bulletList') {
+          vueNodes.push(h('ul', this.renderAst(node.children, h)))
+        } else if (node.type === 'listItem') {
+          vueNodes.push(h('li', this.renderAst(node.children, h)))
         } else if (node.type === 'text') {
           // TODO: might do this using the vuejs _v text rendering function?
           vueNodes.push(this._v(node.text))
